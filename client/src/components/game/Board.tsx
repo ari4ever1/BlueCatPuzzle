@@ -42,20 +42,19 @@ const Board = () => {
   
   const { tiles, width, height } = board;
   
-  // Calculate tile size based on available space
-  // Using clientWidth to get the actual width of the container
+  // Calculate tile size based on available space with a fixed minimum size
   const calculateTileSize = () => {
-    if (!boardRef.current) return 0;
+    if (!boardRef.current) return 40; // Default minimum size
     
     const containerWidth = boardRef.current.clientWidth;
     const containerHeight = boardRef.current.clientHeight;
     
-    // Take the smaller of the width or height divided by the board size
-    // with a small margin for gap between tiles
+    // Calculate size while reserving space for gaps
     const tileWidth = (containerWidth - (width + 1) * 4) / width;
     const tileHeight = (containerHeight - (height + 1) * 4) / height;
     
-    return Math.min(tileWidth, tileHeight);
+    // Use minimum of width/height but ensure a minimum size
+    return Math.max(Math.min(tileWidth, tileHeight), 40);
   };
   
   // Get the tile size
