@@ -272,7 +272,79 @@ export const findSpecialMatches = (board: BoardState): { matches: Tile[], specia
   }
   
   // Check for L and T shapes (rainbow cat)
-  // This is more complex and would need additional code...
+  // Check for L shape (horizontal 3 + vertical 3)
+  for (let row = 0; row < height - 2; row++) {
+    for (let col = 0; col < width - 2; col++) {
+      const currentTile = tiles[row][col];
+      if (!currentTile) continue;
+      
+      const type = currentTile.type;
+      
+      // Check horizontal 3 then vertical 3 (L shape)
+      if (col + 2 < width && row + 2 < height &&
+          tiles[row][col + 1]?.type === type &&
+          tiles[row][col + 2]?.type === type &&
+          tiles[row + 1][col]?.type === type &&
+          tiles[row + 2][col]?.type === type) {
+        
+        const matchTiles = [
+          tiles[row][col],
+          tiles[row][col + 1],
+          tiles[row][col + 2],
+          tiles[row + 1][col],
+          tiles[row + 2][col]
+        ];
+        
+        matches.push(...matchTiles);
+        specialTile = { ...currentTile, isSpecial: true, specialType: 'rainbow' };
+        specialType = 'rainbow';
+        return { matches, specialTile, specialType };
+      }
+      
+      // Check vertical 3 then horizontal 3 (⅂ shape - reversed L)
+      if (col + 2 < width && row + 2 < height &&
+          tiles[row][col + 1]?.type === type &&
+          tiles[row][col + 2]?.type === type &&
+          tiles[row + 1][col + 2]?.type === type &&
+          tiles[row + 2][col + 2]?.type === type) {
+        
+        const matchTiles = [
+          tiles[row][col],
+          tiles[row][col + 1],
+          tiles[row][col + 2],
+          tiles[row + 1][col + 2],
+          tiles[row + 2][col + 2]
+        ];
+        
+        matches.push(...matchTiles);
+        specialTile = { ...currentTile, isSpecial: true, specialType: 'rainbow' };
+        specialType = 'rainbow';
+        return { matches, specialTile, specialType };
+      }
+      
+      // Check for T shape (horizontal 3 + middle extends vertically 2)
+      if (col + 2 < width && row + 2 < height &&
+          tiles[row][col]?.type === type &&
+          tiles[row][col + 1]?.type === type &&
+          tiles[row][col + 2]?.type === type &&
+          tiles[row + 1][col + 1]?.type === type &&
+          tiles[row + 2][col + 1]?.type === type) {
+        
+        const matchTiles = [
+          tiles[row][col],
+          tiles[row][col + 1],
+          tiles[row][col + 2],
+          tiles[row + 1][col + 1],
+          tiles[row + 2][col + 1]
+        ];
+        
+        matches.push(...matchTiles);
+        specialTile = { ...tiles[row][col + 1], isSpecial: true, specialType: 'rainbow' };
+        specialType = 'rainbow';
+        return { matches, specialTile, specialType };
+      }
+    }
+  }
   
   return { matches, specialTile, specialType };
 };
