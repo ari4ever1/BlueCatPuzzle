@@ -7,6 +7,10 @@
     @apply border-border;
   }
 
+  html {
+    height: -webkit-fill-available;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground;
     margin: 0;
@@ -14,6 +18,10 @@
     overflow: hidden;
     width: 100vw;
     height: 100vh;
+    height: -webkit-fill-available;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    touch-action: manipulation;
   }
 }
 
@@ -21,10 +29,58 @@
   width: 100%;
   height: 100%;
   position: fixed;
+  display: flex;
+  flex-direction: column;
 }
 
 canvas {
   width: 100% !important;
   height: 100% !important;
   touch-action: none;
+}
+
+/* Mobile-friendly buttons with larger touch targets */
+button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Custom styles for the game */
+.game-board-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 0.5rem;
+  max-height: 75vh;
+}
+
+/* Portrait orientation optimizations */
+@media (orientation: portrait) {
+  .game-ui {
+    display: flex;
+    flex-direction: column;
+    max-height: 95vh;
+  }
+  
+  .game-board-container {
+    max-height: 70vh;
+  }
+}
+
+/* Landscape orientation optimizations */
+@media (orientation: landscape) {
+  .game-ui {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .game-overlay {
+    width: 30%;
+  }
+  
+  .game-board-container {
+    width: 70%;
+  }
 }

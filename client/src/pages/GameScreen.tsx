@@ -51,11 +51,15 @@ const GameScreen = () => {
       className="min-h-screen relative flex flex-col"
       style={{ background: background.value }}
     >
-      <GameOverlay />
-      
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="w-full max-w-md aspect-square">
-          <Board />
+      <div className="game-ui">
+        <div className="game-overlay p-2">
+          <GameOverlay />
+        </div>
+        
+        <div className="game-board-container">
+          <div className="w-full max-w-md aspect-square">
+            <Board />
+          </div>
         </div>
       </div>
       

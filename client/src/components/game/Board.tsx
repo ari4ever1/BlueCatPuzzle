@@ -85,13 +85,15 @@ const Board = () => {
   return (
     <div 
       ref={boardRef}
-      className="w-full h-full flex items-center justify-center p-2 overflow-hidden"
+      className="w-full h-full flex items-center justify-center p-1 sm:p-2 overflow-hidden touch-none"
     >
       <div 
         className="relative grid gap-1"
         style={{ 
           gridTemplateColumns: `repeat(${width}, ${tileSize}px)`,
           gridTemplateRows: `repeat(${height}, ${tileSize}px)`,
+          maxWidth: '95vw',
+          maxHeight: '70vh',
         }}
       >
         {/* Create the actual board cells with light borders for clarity */}

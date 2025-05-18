@@ -30,7 +30,7 @@ const GameOverlay = () => {
   };
   
   return (
-    <div className="absolute top-0 left-0 w-full p-4 flex flex-col">
+    <div className="w-full flex flex-col">
       {/* Top bar with level, score, and moves */}
       <div className="flex justify-between items-center mb-2">
         <div className="flex items-center">
@@ -58,17 +58,18 @@ const GameOverlay = () => {
         </button>
       </div>
       
-      {/* Large Moves Left Indicator */}
-      <div className="mb-2 bg-blue-700 text-white px-3 py-2 rounded-lg shadow-lg text-center">
-        <div className="text-sm uppercase tracking-wide">Moves Left</div>
-        <div className="text-3xl font-bold">{movesLeft}</div>
-      </div>
-      
-      {/* Score indicator */}
-      <div className="mb-2">
-        <div className="bg-blue-600 text-white px-3 py-1 rounded-md shadow-md">
-          <div className="text-sm">Score</div>
-          <div className="font-bold">{score} / {targetScore}</div>
+      {/* Mobile-friendly stats bar */}
+      <div className="flex mb-2 gap-2">
+        {/* Large Moves Left Indicator */}
+        <div className="bg-blue-700 text-white px-3 py-2 rounded-lg shadow-lg text-center flex-1">
+          <div className="text-xs sm:text-sm uppercase tracking-wide">Moves Left</div>
+          <div className="text-2xl sm:text-3xl font-bold">{movesLeft}</div>
+        </div>
+        
+        {/* Score indicator */}
+        <div className="bg-blue-600 text-white px-3 py-2 rounded-lg shadow-md text-center flex-1">
+          <div className="text-xs sm:text-sm uppercase tracking-wide">Score</div>
+          <div className="text-lg sm:text-2xl font-bold">{score} / {targetScore}</div>
         </div>
       </div>
       
