@@ -58,16 +58,17 @@ const GameOverlay = () => {
         </button>
       </div>
       
-      {/* Score and moves */}
-      <div className="flex justify-between mb-2">
-        <div className="bg-blue-600 text-white px-3 py-1 rounded-md shadow-md w-1/2 mr-1">
+      {/* Large Moves Left Indicator */}
+      <div className="mb-2 bg-blue-700 text-white px-3 py-2 rounded-lg shadow-lg text-center">
+        <div className="text-sm uppercase tracking-wide">Moves Left</div>
+        <div className="text-3xl font-bold">{movesLeft}</div>
+      </div>
+      
+      {/* Score indicator */}
+      <div className="mb-2">
+        <div className="bg-blue-600 text-white px-3 py-1 rounded-md shadow-md">
           <div className="text-sm">Score</div>
           <div className="font-bold">{score} / {targetScore}</div>
-        </div>
-        
-        <div className="bg-blue-600 text-white px-3 py-1 rounded-md shadow-md w-1/2 ml-1">
-          <div className="text-sm">Moves</div>
-          <div className="font-bold">{movesLeft}</div>
         </div>
       </div>
       
